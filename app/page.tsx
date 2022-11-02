@@ -47,7 +47,7 @@ export default async function Home() {
                             <div className="flex flex-col my-2 w-full justify-center">
                                 <article className="flex flex-col justify-center items-center">
                                     <CgSortAz className="w-[32px] h-[32px] m-2" />
-                                    <h4 className="flex text-xl prose font-bold mb-0">Organizedb</h4>
+                                    <h4 className="flex text-xl prose font-bold mb-0">Organized</h4>
                                 </article>
                             </div>
                         </Card>
