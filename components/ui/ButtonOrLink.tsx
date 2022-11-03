@@ -1,43 +1,62 @@
+"use client";
+
 import {cva, VariantProps} from "class-variance-authority";
 
-const ButtonOrLinkStyles = cva(
-    "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
-    {
-        variants: {
-            intent: {
-                default: "bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500",
-                error: "bg-red-600 hover:bg-red-700 focus:ring-red-500",
-                warning: "bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500",
-                success: "bg-green-600 hover:bg-green-700 focus:ring-green-500",
-            },
-            size: {
-                default: "px-4 py-2 text-sm",
-                small: "px-2 py-1 text-xs",
-                large: "px-6 py-3 text-base",
-            },
-            fullWidth: {
-                default: "w-auto",
-                true: "w-full",
-                false: "w-auto",
-            },
+const ButtonOrLinkStyles = cva("flex flex-col p-10 border-2 text-center justify-center items-center", {
+    variants: {
+        intent: {
+            default: "border-gray-300",
         },
-        defaultVariants: {
-            intent: "default",
-            size: "default",
-            fullWidth: "default",
+        size: {
+            default: "px-4 py-2 text-sm",
+            small: "px-2 py-1 text-xs",
+            large: "px-6 py-3 text-base",
         },
-    }
-);
+        fullWidthandHeight: {
+            default: "w-auto h-auto",
+            true: "w-full lg:h-full",
+            false: "w-auto",
+        },
+        rounded: {
+            default: "rounded-[10px]",
+            true: "rounded-full",
+            false: "rounded-[10px]",
+        },
+        textSize: {
+            default: "text-base",
+            small: "text-xs",
+            large: "text-lg",
+            extraLarge: "text-xl",
+        },
+        fontWeight: {
+            default: "font-normal",
+            semiBold: "font-semibold",
+            bold: "font-bold",
+        },
+    },
+    defaultVariants: {
+        intent: "default",
+        fullWidthandHeight: "default",
+        rounded: "default",
+        textSize: "default",
+        fontWeight: "default",
+    },
+});
 
 export interface ButtonProps extends VariantProps<typeof ButtonOrLinkStyles> {
     children: React.ReactNode;
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     href?: string;
+}
+
+function clickHandler(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    console.log("Button clicked");
 }
 
 export const ButtonOrLink = ({children, onClick, href, ...props}: ButtonProps) => {
     return (
-        <div className="flex flex-row">
+        <div className="flex flex-row font-poppins justify-center items-center w-full lg:h-full">
             {href ? (
                 <a href={href} className={ButtonOrLinkStyles(props)}>
                     {children}
