@@ -7,7 +7,13 @@ module.exports = {
             sans: ["Inter", "sans-serif"],
             poppins: ["Poppins", "sans-serif"],
         },
-        extend: {},
+        extend: {
+            animation: {
+                "ping-once": "ping 3s cubic-bezier(0, 0, 0.2, 1) infinite",
+                // Cool ass animations list
+                // https://animate.style/
+            },
+        },
     },
     plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms")],
 };
