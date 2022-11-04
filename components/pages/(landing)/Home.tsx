@@ -1,7 +1,8 @@
 "use client";
 
 // Libraries
-import {Fragment, useState} from "react";
+import {Fragment, useState, useEffect} from "react";
+import {AnimatePresence, motion} from "framer-motion";
 
 // UI Components
 import {Card} from "../../ui/Card";
@@ -12,17 +13,58 @@ import {MdOutlineDesignServices} from "react-icons/md";
 import {CgSortAz, CgMenuRight} from "react-icons/cg";
 import {BiSearch} from "react-icons/bi";
 import {ButtonOrLink} from "../../ui/ButtonOrLink";
+import {GrFormClose} from "react-icons/gr";
+import Link from "next/link";
+import {Menu} from "../../ui/Menu";
 
-export const Home: React.FC = () => {
+export const Home: React.FC = props => {
     const [showDropdown, setShowDropdown] = useState(false);
 
+    const menuOptions = [
+        {
+            text: "About",
+            href: "/",
+        },
+        {
+            text: "Github",
+            href: "/github",
+        },
+        {
+            text: "Team",
+            href: "/team",
+        },
+        {
+            text: "Support",
+            href: "/support",
+        },
+    ];
+
+    function onMenuClick() {
+        setShowDropdown(!showDropdown);
+    }
+
     return (
-        <div className="flex font-poppins w-full items-center">
-            <main className="w-full">
-                <section
-                    id="section1"
-                    className="grid overflow-hidden min-h-screen grid-col-1 lg:grid-cols-5 grid-rows-auto lg:grid-rows-3 gap-2 grid-flow-row p-10">
-                    <article className=" flex flex-col prose p-5 lg:hidden place-items-center">
+        <main className="flex flex-row font-poppins no-scrollbar p-0 min-h-screen items-center">
+            <AnimatePresence>
+                <motion.section
+                    className="grid overflow-hidden w-full min-h-screen grid-col-1 lg:grid-cols-5 grid-rows-auto lg:grid-rows-3 gap-2 grid-flow-row p-10"
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    transition={{duration: 0.5}}>
+                    <div className="fixed flex flex-row top-0 left-0 h-[60px] z-999 justify-between w-full items-center px-5 bg-clip-padding bg-opacity-[50%] bg-white blur-[50%] rounded-sm lg:hidden">
+                        <h1 className="flex font-semibold text-sm">Multi Email</h1>
+                        <div
+                            className="flex place-items-center hover:animate-ping-once cursor-pointer transition-all"
+                            onClick={e => {
+                                e.preventDefault();
+                                setShowDropdown(true);
+                            }}>
+                            <ButtonOrLink intent="default" rounded={true}>
+                                <CgMenuRight className="w-[32px] h-[32px] m-2" />
+                            </ButtonOrLink>
+                        </div>
+                    </div>
+                    <article className=" flex flex-col prose p-5 mt-[60px] lg:hidden place-items-center">
                         <h1 className="flex font-bold">Multi Email</h1>
                         <p className="">
                             <b>Multi Email</b> is a free, open-source, and self-hosted email service that allows you to
@@ -118,22 +160,11 @@ export const Home: React.FC = () => {
                             <CgMenuRight className="w-[32px] h-[32px] m-2" />
                         </ButtonOrLink>
                     </div>
-                    {showDropdown ? (
-                        <div className="fixed flex rounded-full border-2 bg-white opacity-[10%] border-gray-200 blur w-[500px] h-[500px]">
-                            <div
-                                className="absolute top-0 left-0 z-999"
-                                onClick={e => {
-                                    e.preventDefault();
-                                    setShowDropdown(true);
-                                }}>
-                                <ButtonOrLink intent="default" rounded={true} fontWeight="bold">
-                                    <CgMenuRight className="w-[32px] h-[32px] m-2" />
-                                </ButtonOrLink>
-                            </div>
-                        </div>
-                    ) : null}
-                </section>
-            </main>
-        </div>
+                    <AnimatePresence>
+                        {showDropdown ? <Menu options={menuOptions} closeMenu={onMenuClick} /> : null}
+                    </AnimatePresence>
+                </motion.section>
+            </AnimatePresence>
+        </main>
     );
 };

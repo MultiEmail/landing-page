@@ -9,9 +9,7 @@ module.exports = {
         },
         extend: {
             animation: {
-                "ping-once": "ping 3s cubic-bezier(0, 0, 0.2, 1) infinite",
-                // Cool ass animations list
-                // https://animate.style/
+                "ping-once": "ping 2s linear infinite alternate both",
             },
         },
     },

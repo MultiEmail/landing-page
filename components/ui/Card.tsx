@@ -16,7 +16,6 @@ export interface CardProps extends VariantProps<typeof CardStyles> {
     children: React.ReactNode;
 }
 
-
 export const Card = ({children, ...props}: CardProps) => {
     return (
         <div className="w-full">

@@ -5,7 +5,7 @@ import {cva, VariantProps} from "class-variance-authority";
 const ButtonOrLinkStyles = cva("flex flex-col p-10 border-2 text-center justify-center items-center ", {
     variants: {
         intent: {
-            default: "border-gray-300 transition-all hover:animate-ping-once",
+            default: "border-gray-300 transition-all hover:animate-ping-once transition-all",
         },
         size: {
             default: "px-4 py-2 text-sm",
