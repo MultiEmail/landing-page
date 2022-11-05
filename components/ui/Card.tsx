@@ -1,14 +1,19 @@
 import {cva, VariantProps} from "class-variance-authority";
 
-const CardStyles = cva("flex w-full items-center", {
+const CardStyles = cva("flex items-center", {
     variants: {
         size: {
             big: "flex-row justify-evenly",
             small: "flex-col justify-center text-center",
         },
+        width: {
+            full: "w-full",
+            fit: "w-fit",
+        },
     },
     defaultVariants: {
         size: "small",
+        width: "full",
     },
 });
 

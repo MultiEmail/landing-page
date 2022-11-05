@@ -1,7 +1,7 @@
 "use client";
 
 // Libraries
-import {Fragment, useState, useEffect} from "react";
+import {useState} from "react";
 import {AnimatePresence, motion} from "framer-motion";
 
 // UI Components
@@ -13,8 +13,6 @@ import {MdOutlineDesignServices} from "react-icons/md";
 import {CgSortAz, CgMenuRight} from "react-icons/cg";
 import {BiSearch} from "react-icons/bi";
 import {ButtonOrLink} from "../../ui/ButtonOrLink";
-import {GrFormClose} from "react-icons/gr";
-import Link from "next/link";
 import {Menu} from "../../ui/Menu";
 
 export const Home: React.FC = props => {
@@ -30,8 +28,8 @@ export const Home: React.FC = props => {
             href: "/github",
         },
         {
-            text: "Team",
-            href: "/team",
+            text: "Contributor's",
+            href: "/contributors",
         },
         {
             text: "Support",
